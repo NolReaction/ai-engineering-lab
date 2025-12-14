@@ -1,0 +1,14 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+
+# добавил для игнора репортов из HW03/HW04
+reports*/
+
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
