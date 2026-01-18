@@ -1,0 +1,44 @@
+[
+  {
+    "model": "Stacking",
+    "accuracy_test": 0.9136111111111112,
+    "f1_test": 0.8261598658468418,
+    "roc_auc_test": 0.9298841160234756
+  },
+  {
+    "model": "RandomForest (tuned)",
+    "accuracy_test": 0.89,
+    "f1_test": 0.7509433962264151,
+    "roc_auc_test": 0.9286937892964258
+  },
+  {
+    "model": "GradientBoosting (tuned)",
+    "accuracy_test": 0.8830555555555556,
+    "f1_test": 0.7489564698867024,
+    "roc_auc_test": 0.9099237736525873
+  },
+  {
+    "model": "DecisionTree (tuned)",
+    "accuracy_test": 0.8383333333333334,
+    "f1_test": 0.6576470588235294,
+    "roc_auc_test": 0.8371031995137457
+  },
+  {
+    "model": "LogisticRegression",
+    "accuracy_test": 0.8119444444444445,
+    "f1_test": 0.5606748864373783,
+    "roc_auc_test": 0.7976914875596609
+  },
+  {
+    "model": "DecisionTree (unlimited)",
+    "accuracy_test": 0.8083333333333333,
+    "f1_test": 0.6379853095487933,
+    "roc_auc_test": 0.7552147789435926
+  },
+  {
+    "model": "Dummy (most_frequent)",
+    "accuracy_test": 0.7375,
+    "f1_test": 0.0,
+    "roc_auc_test": 0.5
+  }
+]

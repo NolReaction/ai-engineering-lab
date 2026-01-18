@@ -1,0 +1,53 @@
+{
+  "DecisionTree": {
+    "best_params": {
+      "ccp_alpha": 0.0,
+      "max_depth": 10,
+      "min_samples_leaf": 10
+    },
+    "best_cv_score": 0.8265981841928728,
+    "scoring": "roc_auc",
+    "cv": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42)"
+  },
+  "RandomForest": {
+    "best_params": {
+      "max_depth": null,
+      "max_features": "log2",
+      "min_samples_leaf": 1,
+      "n_estimators": 200
+    },
+    "best_cv_score": 0.9279582542943938,
+    "scoring": "roc_auc",
+    "cv": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42)"
+  },
+  "GradientBoosting": {
+    "best_params": {
+      "learning_rate": 0.1,
+      "max_depth": 3,
+      "n_estimators": 200,
+      "subsample": 0.8
+    },
+    "best_cv_score": 0.912409742998831,
+    "scoring": "roc_auc",
+    "cv": "StratifiedKFold(n_splits=3, shuffle=True, random_state=42)"
+  },
+  "Stacking": {
+    "base_models": {
+      "RandomForest_best_params": {
+        "max_depth": null,
+        "max_features": "log2",
+        "min_samples_leaf": 1,
+        "n_estimators": 200
+      },
+      "GradientBoosting_best_params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "n_estimators": 200,
+        "subsample": 0.8
+      },
+      "LogReg": "Pipeline(StandardScaler + LogisticRegression)"
+    },
+    "final_estimator": "LogisticRegression(max_iter=1000)",
+    "cv": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42)"
+  }
+}

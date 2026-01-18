@@ -1,0 +1,25 @@
+{
+  "dataset_01": {
+    "method": "KMeans",
+    "params": {
+      "k": 2
+    },
+    "criterion": "silhouette"
+  },
+  "dataset_02": {
+    "method": "Agglomerative",
+    "params": {
+      "k": 2,
+      "linkage": "average"
+    },
+    "criterion": "silhouette"
+  },
+  "dataset_04": {
+    "method": "DBSCAN",
+    "params": {
+      "eps": 2.0,
+      "min_samples": 10
+    },
+    "criterion": "silhouette"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "best_model_name": "Stacking",
+  "selection_criterion": "roc_auc_test",
+  "test_metrics": {
+    "accuracy": 0.9136111111111112,
+    "f1": 0.8261598658468418,
+    "roc_auc": 0.9298841160234756
+  },
+  "dataset_info": {
+    "file": "S06-hw-dataset-02.csv",
+    "n_samples": 18000,
+    "n_features": 37,
+    "target_distribution": {
+      "0": 0.7373888888888889,
+      "1": 0.26261111111111113
+    },
+    "random_state": 42,
+    "test_size": 0.2
+  }
+}
