@@ -1,10 +1,22 @@
 {
-  "best_model_name": "Stacking",
-  "selection_criterion": "roc_auc_test",
+  "best_model_name": "RandomForest (tuned)",
+  "best_model_name_canonical": "RandomForestClassifier",
+  "best_model_label": "RandomForest (tuned)",
+  "best_model_canonical": "RandomForestClassifier",
+  "selection_criterion": "roc_auc_cv_train",
+  "cv_score_train": 0.9279582542943938,
   "test_metrics": {
-    "accuracy": 0.9136111111111112,
-    "f1": 0.8261598658468418,
-    "roc_auc": 0.9298841160234756
+    "display_name": "RandomForest (tuned)",
+    "accuracy": 0.89,
+    "f1": 0.7509433962264151,
+    "f1_macro": 0.8401775804661488,
+    "f1_weighted": 0.8825638179800221,
+    "roc_auc": 0.9286937892964258,
+    "accuracy_test": 0.89,
+    "f1_test": 0.7509433962264151,
+    "f1_macro_test": 0.8401775804661488,
+    "f1_weighted_test": 0.8825638179800221,
+    "roc_auc_test": 0.9286937892964258
   },
   "dataset_info": {
     "file": "S06-hw-dataset-02.csv",

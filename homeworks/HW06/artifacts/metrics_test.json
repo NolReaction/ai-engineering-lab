@@ -1,44 +1,109 @@
-[
-  {
-    "model": "Stacking",
-    "accuracy_test": 0.9136111111111112,
-    "f1_test": 0.8261598658468418,
-    "roc_auc_test": 0.9298841160234756
+{
+  "metadata": {
+    "description": "Test metrics for all models",
+    "scoring": [
+      "accuracy",
+      "f1",
+      "f1_macro",
+      "f1_weighted",
+      "roc_auc"
+    ],
+    "dataset": "S06-hw-dataset-02.csv",
+    "test_size": 0.2,
+    "random_state": 42,
+    "note": "Model selection was done by CV ROC-AUC on train; test used only for final evaluation."
   },
-  {
-    "model": "RandomForest (tuned)",
-    "accuracy_test": 0.89,
-    "f1_test": 0.7509433962264151,
-    "roc_auc_test": 0.9286937892964258
-  },
-  {
-    "model": "GradientBoosting (tuned)",
-    "accuracy_test": 0.8830555555555556,
-    "f1_test": 0.7489564698867024,
-    "roc_auc_test": 0.9099237736525873
-  },
-  {
-    "model": "DecisionTree (tuned)",
-    "accuracy_test": 0.8383333333333334,
-    "f1_test": 0.6576470588235294,
-    "roc_auc_test": 0.8371031995137457
-  },
-  {
-    "model": "LogisticRegression",
-    "accuracy_test": 0.8119444444444445,
-    "f1_test": 0.5606748864373783,
-    "roc_auc_test": 0.7976914875596609
-  },
-  {
-    "model": "DecisionTree (unlimited)",
-    "accuracy_test": 0.8083333333333333,
-    "f1_test": 0.6379853095487933,
-    "roc_auc_test": 0.7552147789435926
-  },
-  {
-    "model": "Dummy (most_frequent)",
-    "accuracy_test": 0.7375,
-    "f1_test": 0.0,
-    "roc_auc_test": 0.5
+  "results": {
+    "DummyClassifier": {
+      "display_name": "Dummy (most_frequent)",
+      "accuracy": 0.7375,
+      "f1": 0.0,
+      "f1_macro": 0.4244604316546763,
+      "f1_weighted": 0.6260791366906475,
+      "roc_auc": 0.5,
+      "accuracy_test": 0.7375,
+      "f1_test": 0.0,
+      "f1_macro_test": 0.4244604316546763,
+      "f1_weighted_test": 0.6260791366906475,
+      "roc_auc_test": 0.5
+    },
+    "LogisticRegression": {
+      "display_name": "LogisticRegression",
+      "accuracy": 0.8119444444444445,
+      "f1": 0.5606748864373783,
+      "f1_macro": 0.7205212212713485,
+      "f1_weighted": 0.7964482303174845,
+      "roc_auc": 0.7976914875596609,
+      "accuracy_test": 0.8119444444444445,
+      "f1_test": 0.5606748864373783,
+      "f1_macro_test": 0.7205212212713485,
+      "f1_weighted_test": 0.7964482303174845,
+      "roc_auc_test": 0.7976914875596609
+    },
+    "DecisionTreeClassifier_unlimited": {
+      "display_name": "DecisionTree (unlimited)",
+      "accuracy": 0.8083333333333333,
+      "f1": 0.6379853095487933,
+      "f1_macro": 0.7538245399274001,
+      "f1_weighted": 0.8088481743572383,
+      "roc_auc": 0.7552147789435926,
+      "accuracy_test": 0.8083333333333333,
+      "f1_test": 0.6379853095487933,
+      "f1_macro_test": 0.7538245399274001,
+      "f1_weighted_test": 0.8088481743572383,
+      "roc_auc_test": 0.7552147789435926
+    },
+    "DecisionTreeClassifier": {
+      "display_name": "DecisionTree (tuned)",
+      "accuracy": 0.8383333333333334,
+      "f1": 0.6576470588235294,
+      "f1_macro": 0.7759144385026737,
+      "f1_weighted": 0.8320914438502673,
+      "roc_auc": 0.8371031995137457,
+      "accuracy_test": 0.8383333333333334,
+      "f1_test": 0.6576470588235294,
+      "f1_macro_test": 0.7759144385026737,
+      "f1_weighted_test": 0.8320914438502673,
+      "roc_auc_test": 0.8371031995137457
+    },
+    "RandomForestClassifier": {
+      "display_name": "RandomForest (tuned)",
+      "accuracy": 0.89,
+      "f1": 0.7509433962264151,
+      "f1_macro": 0.8401775804661488,
+      "f1_weighted": 0.8825638179800221,
+      "roc_auc": 0.9286937892964258,
+      "accuracy_test": 0.89,
+      "f1_test": 0.7509433962264151,
+      "f1_macro_test": 0.8401775804661488,
+      "f1_weighted_test": 0.8825638179800221,
+      "roc_auc_test": 0.9286937892964258
+    },
+    "GradientBoostingClassifier": {
+      "display_name": "GradientBoosting (tuned)",
+      "accuracy": 0.8830555555555556,
+      "f1": 0.7489564698867024,
+      "f1_macro": 0.8363648907463568,
+      "f1_weighted": 0.8778838906546925,
+      "roc_auc": 0.9099237736525873,
+      "accuracy_test": 0.8830555555555556,
+      "f1_test": 0.7489564698867024,
+      "f1_macro_test": 0.8363648907463568,
+      "f1_weighted_test": 0.8778838906546925,
+      "roc_auc_test": 0.9099237736525873
+    },
+    "StackingClassifier": {
+      "display_name": "Stacking",
+      "accuracy": 0.9136111111111112,
+      "f1": 0.8261598658468418,
+      "f1_macro": 0.8843421765013177,
+      "f1_weighted": 0.9119787740621939,
+      "roc_auc": 0.9298841160234756,
+      "accuracy_test": 0.9136111111111112,
+      "f1_test": 0.8261598658468418,
+      "f1_macro_test": 0.8843421765013177,
+      "f1_weighted_test": 0.9119787740621939,
+      "roc_auc_test": 0.9298841160234756
+    }
   }
-]
+}
