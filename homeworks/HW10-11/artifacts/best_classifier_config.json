@@ -1,0 +1,16 @@
+{
+  "dataset": "SVHN",
+  "seed": 42,
+  "selected_experiment_id": "C1",
+  "architecture": "SimpleCNN (no aug)",
+  "train_transform": "ToTensor + Normalize(SVHN)",
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "epochs": 5,
+  "split": {
+    "train": 3000,
+    "val": 1000,
+    "test": 2000,
+    "train_val_rule": "SVHN train split -> random 80/20, fixed seed, then subset for faster reproducible runs"
+  }
+}

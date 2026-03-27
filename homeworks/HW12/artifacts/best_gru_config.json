@@ -1,0 +1,13 @@
+{
+  "model": "GRURegressor",
+  "window_size": 24,
+  "horizon": 1,
+  "hidden_size": 64,
+  "batch_size": 64,
+  "learning_rate": 0.001,
+  "max_epochs": 30,
+  "best_epoch": 30,
+  "seed": 42,
+  "scaler": "StandardScaler(train_target_only)",
+  "device": "cpu"
+}
