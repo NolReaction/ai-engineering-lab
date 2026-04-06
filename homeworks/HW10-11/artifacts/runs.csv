@@ -3,5 +3,5 @@ C1,classification,SVHN,42,SimpleCNN (no aug),Adam,0.001,5,0.723,0.7405,,,,Same C
 C2,classification,SVHN,42,SimpleCNN (with aug),Adam,0.001,5,0.574,,,,,Same CNN architecture as C1; train augmentations enabled.
 C3,classification,SVHN,42,"ResNet18 pretrained, frozen backbone, train fc only",Adam,0.001,5,0.343,,,,,Transfer learning with frozen backbone.
 C4,classification,SVHN,42,"ResNet18 pretrained, layer4+fc trainable",Adam,0.0001,5,0.719,,,,,Partial fine-tuning (layer4 + fc).
-V1,segmentation,OxfordIIITPet,42,DeepLabV3_ResNet50 pretrained,,,0,,,0.8078933535695147,0.958058090818651,0.738032078482421,V1: fg_prob(cat+dog) >= 0.5
-V2,segmentation,OxfordIIITPet,42,DeepLabV3_ResNet50 pretrained,,,0,,,0.8501566476232301,0.9398579482033287,0.7629835310163798,V2: fg_prob(cat+dog) >= 0.7 + remove_small_objects + opening/closing
+V1,segmentation,OxfordIIITPet,42,DeepLabV3_ResNet50 pretrained,,,0,,,0.8078933535695147,0.958058090818651,0.738032078482421,V1 postprocess: threshold=0.5
+V2,segmentation,OxfordIIITPet,42,DeepLabV3_ResNet50 pretrained,,,0,,,0.8501566476232301,0.9398579482033287,0.7629835310163798,V2 postprocess: threshold=0.7 + remove_small_objects + opening + closing

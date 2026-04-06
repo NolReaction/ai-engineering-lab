@@ -1,101 +1,89 @@
-# HW12 – временные ряды: temporal split, baseline-модели и GRU-прогноз
+# HW12 - time series: temporal split, baselines and GRU forecast
 
 ## 1. Кратко: что сделано
 
-- Использован датасет `S12-hw-dataset.csv`, прогнозировалось следующее значение `target`.
-- Выполнен корректный `train / validation / test` split по времени без random shuffle.
-- Сравнены подходы `B1`, `B2`, `B3`, `R1` в единой постановке.
-- Лучшая модель выбрана по `best_val_mae`, test использован один раз для финальной оценки.
+- Dataset: `S12-hw-dataset.csv`, target: `target`, one-step forecasting.
+- Temporal split used for `train / validation / test` without shuffling.
+- Compared methods: `B1`, `B2`, `B3`, `R1`.
+- Best method selected by validation MAE: `R1`.
 
 ## 2. Среда и воспроизводимость
 
 - Python: 3.12 (venv `.venv`)
 - pandas / numpy / scikit-learn: 3.0.1 / 2.4.3 / 1.8.0
 - torch: 2.11.0
-- Устройство (CPU/GPU): cpu
+- Device: CPU
 - Seed: 42
-- Как запустить: открыть `HW12.ipynb` и выполнить Run All.
+- Run: open `HW12.ipynb` and execute Run All.
 
 ## 3. Данные и постановка задачи
 
-- Датасет: `S12-hw-dataset.csv`
-- Целевая колонка: `target`
-- Частота временного ряда: 1 час
-- Горизонт прогноза: 1 шаг
-- Размер датасета: 4320
-- Диапазон дат: 2025-01-01 00:00:00 — 2025-06-29 23:00:00
-- Есть ли дополнительные внешние признаки: нет
-- Комментарий (2-4 предложения): ряд имеет заметные колебания, локальный тренд и шум. Пропусков в данных нет. Для такой задачи важно сохранять хронологию данных и не допускать утечки будущей информации.
+- Dataset: `S12-hw-dataset.csv`
+- Target column: `target`
+- Frequency: hourly
+- Forecast horizon: 1 step
+- Dataset size: 4320
+- Date range: 2025-01-01 00:00:00 to 2025-06-29 23:00:00
+- Extra external features: no
+- Short comment: the series has oscillations and local trend with noise; no missing values in raw data.
 
 ## 4. Temporal split и признаки
 
 ### 4.1. Разбиение по времени
 
-- Как именно выполнен `train / validation / test`: первые 70% наблюдений в train, следующие 15% в validation, последние 15% в test.
-- Какие доли или интервалы использовались: train=3024, validation=648, test=648.
-- Почему `random split` здесь некорректен: перемешивание нарушает временной порядок и создаёт утечку информации из будущего.
+- Split method: first 70% train, next 15% validation, last 15% test.
+- Split sizes: train=3024, validation=648, test=648.
+- Why random split is wrong: it leaks future information into training and inflates metrics.
 
 ### 4.2. Признаки для baseline-моделей
 
-- Какие лаги использовались: `lag_1`, `lag_7`, `lag_14`.
-- Какие rolling-признаки использовались: `rolling_mean_7`, `rolling_std_7` (оба с `shift(1)`).
-- Какие календарные признаки использовались: `day_of_week`, `hour`.
-- Как обрабатывались пропуски после построения лагов/rolling: удаление начальных строк с NaN (`dropna`).
-- Использовалось ли масштабирование и где именно оно обучалось: `StandardScaler` fit только на train (для `B3` на признаках, для `R1` на target).
+- Lags: `lag_1`, `lag_7`, `lag_14`
+- Rolling features: `rolling_mean_7`, `rolling_std_7` using `shift(1)`
+- Calendar features: `day_of_week`, `hour`
+- Missing after feature engineering: dropped initial NaN rows from lag/rolling.
+- Scaling: fitted only on train data (B3 features, R1 target).
 
 ## 5. Модели и эксперименты (B1, B2, B3, R1)
 
-Опишите коротко и сопоставимо:
+- B1 (`naive-last`): forecast equals previous value.
+- B2 (`moving-average`): moving average baseline.
+- B3 (`ridge-lag-features`): Ridge on lag/rolling/calendar features.
+- R1 (`gru-forecast`): GRU on fixed-size windows.
 
-- B1 (`naive-last`): прогноз `y_hat(t)=y(t-1)`.
-- B2 (`moving-average`): прогноз как среднее предыдущих 24 значений.
-- B3 (`ridge-lag-features`): Ridge на lag/rolling/calendar признаках.
-- R1 (`gru-forecast`): GRU на оконном представлении (`window_size=24`).
-
-Дополнительно:
-
-- Основная метрика выбора лучшей модели: `validation MAE`.
-- Дополнительные метрики: `RMSE`, `MAPE`.
-- `window_size` для `GRU`: 24
+- Main selection metric: validation MAE
+- Additional metrics: RMSE, MAPE
+- GRU window_size: 24
 - Batch size: 64
-- Максимальное число эпох: 30
-- Optimizer: Adam
-- Learning rate: 0.001
-- Как сохранялась лучшая модель: по минимуму `val_mae` сохранён `state_dict` в `./artifacts/best_gru.pt`.
+- Epochs: 30
+- Optimizer: Adam, lr=0.001
+- Best GRU checkpoint saved by best validation MAE.
 
 ## 6. Результаты
 
-Ссылки на файлы в репозитории:
+- Results table: `./artifacts/runs.csv`
+- Best GRU weights: `./artifacts/best_gru.pt`
+- Best GRU config: `./artifacts/best_gru_config.json`
+- Split figure: `./artifacts/figures/series_split.png`
+- Comparison figure: `./artifacts/figures/baselines_compare.png`
+- Learning curves: `./artifacts/figures/gru_learning_curves.png`
+- Final test forecast: `./artifacts/figures/best_forecast_test.png`
 
-- Таблица результатов: `./artifacts/runs.csv`
-- Лучшая `GRU`: `./artifacts/best_gru.pt`
-- Конфиг лучшей `GRU`: `./artifacts/best_gru_config.json`
-- Визуализация split: `./artifacts/figures/series_split.png`
-- Сравнение подходов: `./artifacts/figures/baselines_compare.png`
-- Кривые обучения `GRU`: `./artifacts/figures/gru_learning_curves.png`
-- Финальный прогноз на test: `./artifacts/figures/best_forecast_test.png`
-
-Короткая сводка (6-10 строк):
-
-- Лучший baseline среди `B1`, `B2`, `B3`: B3
-- Лучшая `val_MAE`: 5.2500
-- Лучшая `val_RMSE`: 6.8408
-- Лучшая `val_MAPE`: 3.5217
-- Итоговая `test_MAE` лучшего подхода: 6.0297
-- Итоговая `test_RMSE` лучшего подхода: 7.6990
-- Итоговая `test_MAPE` лучшего подхода: 3.8622
-- Что дали лаговые и rolling-признаки относительно простых baseline: улучшили описание локальной динамики и снизили ошибку по сравнению с наивными правилами.
-- Что показала `GRU` относительно табличного baseline: GRU учитывает последовательный контекст окна и сравнивается в тех же условиях split/метрик.
-- Совпали ли выводы по `validation` и `test`: итоговая проверка сделана только для модели, выбранной по validation.
+- Best baseline among B1/B2/B3: B3
+- Best val_MAE: 5.3308
+- Best val_RMSE: 6.8842
+- Best val_MAPE: 3.6022
+- Final test_MAE of selected model: 6.2547
+- Final test_RMSE of selected model: 7.8478
+- Final test_MAPE of selected model: 4.0441
 
 ## 7. Анализ
 
-Наивный baseline полезен как нижняя граница качества, но он не учитывает более сложную динамику ряда. Moving average сглаживает шум, однако запаздывает на резких изменениях. Добавление лаговых и rolling-признаков позволяет учесть недавнее поведение и вариативность ряда. Календарные признаки помогают уловить периодичность по времени. Ridge даёт устойчивое решение для табличного представления временного ряда и обычно выигрывает у простых эвристик. GRU работает с последовательностями напрямую и может лучше захватывать нелинейные временные зависимости. Потенциальные утечки возникают при random split, при использовании текущего/будущего значения в признаках и при масштабировании на полном датасете. В работе эти риски сняты temporal split, `shift(1)` для признаков и fit scaler только на train. Выбор модели по validation принципиален, потому что test нужен только для честной финальной оценки. По графику прогноза на test видно, где модель точнее работает на плавных участках и где ошибается на резких колебаниях.
+Temporal split avoids leakage and keeps evaluation realistic for forecasting. Lag and rolling features improved over naive baselines. GRU achieved the best validation MAE in the final run. Leakage risks were controlled with shift-based features and train-only scaling.
 
 ## 8. Итоговый вывод
 
-Для данной задачи разумный базовый подход — сравнение tabular-модели на lag/rolling признаках и GRU на оконном представлении. Простые baseline подходят для быстрой оценки и как контрольная линия. Переход к GRU оправдан, когда в данных есть существенная последовательная структура и доступен ресурс на обучение. Главный вывод: для временных рядов корректная temporal-валидация обязательна, иначе качество моделей оценивается некорректно.
+The homework uses proper time-based validation and one-time final test evaluation. The full pipeline with baselines and GRU is reproducible and artifacts are saved.
 
 ## 9. Приложение (опционально)
 
-Опциональные эксперименты в этой версии не выполнялись.
+Optional experiments were not included in this version.
