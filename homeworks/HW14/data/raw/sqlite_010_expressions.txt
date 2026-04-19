@@ -1,0 +1,19 @@
+TITLE: SQL Language Expressions
+SOURCE: https://sqlite.org/lang_expr.html
+
+Expressions are the building blocks that produce values inside SQL statements. SQLite's expression reference covers literals, operators, function calls, CASE expressions, CAST, COLLATE, subqueries, parameter binding forms, boolean contexts, and operator precedence.
+
+The page explains how expressions are formed from constants, column references, unary and binary operators, function calls, and parenthesized subexpressions. It also documents parameter placeholders used in prepared statements, such as positional question marks and named parameters. This matters because application code should usually pass values through parameters rather than through string formatting.
+
+SQLite documents common operators including arithmetic, comparison, logical operators, string concatenation, pattern matching through LIKE and GLOB, membership tests with IN, range checks with BETWEEN, NULL tests, and expression forms involving subqueries. CASE expressions provide conditional logic, while CAST can request conversion to a target type name.
+
+Expression behavior also interacts with collation, affinity, and NULL semantics. That means the expression page often complements the datatypes page and the functions pages. A confusing result in SQL may come not from the table schema but from how an expression is evaluated.
+
+In a retrieval setting, this page is the right source for questions like:
+- What parameter styles can SQLite use?
+- How do CASE expressions work?
+- What does CAST do in SQLite?
+- Which operators exist for pattern matching or membership?
+- How are NULL tests written?
+
+Because expressions are everywhere, this document is broad and often serves as a fallback source when a query mentions operators, literals, placeholders, or conditional logic but not a more specific feature page.

@@ -1,0 +1,23 @@
+TITLE: Built-In Aggregate Functions
+SOURCE: https://sqlite.org/lang_aggfunc.html
+
+Aggregate functions combine values from multiple rows into a single result. SQLite documents aggregate functions separately from scalar functions because they are evaluated over groups of rows, often together with GROUP BY. The aggregate page is therefore the right source for questions about summarization, counting, concatenation across rows, and statistical style computations.
+
+Core aggregate functions include avg, count, group_concat, string_agg, max, min, sum, and total. Some builds also document percentile-style functions when available. The semantics of each function matter. For example:
+- count(*) counts rows.
+- count(X) counts non-null values of X.
+- avg(X) computes the average of non-null numeric values.
+- sum(X) returns the sum of non-null values, while total(X) is designed to avoid returning NULL for an empty set and behaves differently in type handling.
+- group_concat(X[,Y]) concatenates non-null values, optionally using a separator.
+- string_agg is a related aggregation name documented alongside group concatenation support.
+
+SQLite also discusses modifiers and syntax relevant to aggregates. DISTINCT can be applied to aggregate inputs where meaningful. FILTER clauses can restrict which rows contribute to an aggregate. ORDER BY inside an aggregate call matters for functions whose output depends on input order, such as text concatenation.
+
+This page is particularly useful when a retrieval query asks:
+- What is the difference between count(*) and count(column)?
+- How can I join text from many rows?
+- What does total do differently from sum?
+- Can aggregates use DISTINCT or FILTER?
+- How do max and min behave as aggregates?
+
+A small RAG pipeline built on this knowledge base can answer analytical SQL questions by grounding them in this page instead of guessing from generic SQL advice. That is valuable because subtle differences in NULL handling, ordering, and empty-group behavior often matter in SQLite.

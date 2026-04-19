@@ -1,0 +1,7 @@
+query,before_retrieved_sources,after_retrieved_sources,changed
+How do window functions differ from aggregates?,sqlite_001_sql_syntax.txt | sqlite_004_aggregate_functions.txt,sqlite_011_window_functions.txt,True
+How can I get row numbers using row_number in SQLite?,sqlite_007_row_values.txt,sqlite_011_window_functions.txt | sqlite_007_row_values.txt,True
+What is FTS5 and why would I use MATCH?,sqlite_009_strict_tables.txt | sqlite_005_date_time_functions.txt,sqlite_012_fts5.txt,True
+How do tokenizers influence FTS5 search quality?,sqlite_004_aggregate_functions.txt,sqlite_012_fts5.txt,True
+What does WITH do and how are recursive CTEs different?,sqlite_006_datatypes.txt | sqlite_003_core_functions.txt,sqlite_013_with_clause.txt,True
+What does PRAGMA do and can I query pragma metadata via SELECT?,sqlite_002_pragma.txt,sqlite_002_pragma.txt,False

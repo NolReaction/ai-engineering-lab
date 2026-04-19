@@ -1,0 +1,25 @@
+TITLE: Built-In Scalar SQL Functions
+SOURCE: https://sqlite.org/lang_corefunc.html
+
+SQLite provides a set of built-in scalar functions that can be used inside expressions. A scalar function returns one value for each row or expression evaluation. These functions cover common tasks such as null handling, string processing, length checks, type inspection, numeric utilities, pattern matching helpers, and control-flow style expressions.
+
+Important examples include abs, changes, char, coalesce, concat, format, glob, hex, ifnull, iif, instr, length, like, likelihood, lower, ltrim, max, min, nullif, octet_length, printf, quote, random, randomblob, replace, round, sign, soundex, substr or substring, total_changes, trim, typeof, unhex, unicode, upper, and zeroblob. Not every build exposes every optional function in the same way, but the reference documents the supported built-ins.
+
+Some functions are especially important for retrieval examples:
+- coalesce returns the first non-null argument.
+- ifnull is a two-argument null-handling shortcut.
+- nullif returns NULL when two expressions are equal.
+- length measures text length, while octet_length concerns byte length.
+- typeof reveals SQLite's runtime storage class for a value.
+- lower, upper, trim, ltrim, rtrim, replace, and substr are useful for text processing.
+- quote returns a safely quoted SQL literal representation.
+
+The page also distinguishes functions that look similar but serve different purposes. For example, max and min can behave as scalar functions in expressions, while separate aggregate versions summarize over groups. String formatting helpers like printf and format help generate text output, but they are not substitutes for parameterized queries in application code.
+
+For a knowledge base, this page is ideal for questions about expression-level helpers, text operations, null handling, and value inspection. It is not the main source for aggregate calculations over groups and not the main source for date/time arithmetic, both of which have their own pages.
+
+A mini-RAG system can use this document to answer questions such as:
+- Which function returns the first non-null value?
+- How do I get a substring in SQLite?
+- How can I inspect the type of a stored value?
+- What function uppercases text?

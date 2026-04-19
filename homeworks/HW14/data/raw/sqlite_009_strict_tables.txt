@@ -1,0 +1,19 @@
+TITLE: STRICT Tables
+SOURCE: https://sqlite.org/stricttables.html
+
+STRICT tables are a feature that makes SQLite enforce a more rigid typing discipline for specific tables. This is notable because ordinary SQLite tables use the flexible type-affinity model described in the datatypes documentation. STRICT tables therefore provide a way to opt into stronger type guarantees when needed.
+
+When a table is declared as STRICT, column definitions must use supported type names accepted by the feature, and inserted values are validated more carefully. The goal is to give developers behavior closer to what they expect from statically typed SQL engines while preserving SQLite's broader design for non-STRICT tables.
+
+This page is important because many students ask a natural question: if SQLite is dynamically typed, how can I get stricter validation? The answer is not “SQLite changed its philosophy completely” but rather “use STRICT on tables that need stronger guarantees.”
+
+STRICT tables are useful for application schemas that benefit from earlier error detection, clearer data contracts, and more predictable storage. At the same time, the feature does not erase SQLite's dynamic model everywhere; it is an opt-in table-level behavior.
+
+For retrieval, this page answers:
+- What problem do STRICT tables solve?
+- How do they differ from ordinary SQLite tables?
+- Are they globally enabled or per table?
+- Why would someone choose STRICT in a project?
+- How does STRICT relate to the normal affinity model?
+
+This document pairs especially well with the datatypes page because together they explain the contrast between flexible typing and explicitly stricter schemas.

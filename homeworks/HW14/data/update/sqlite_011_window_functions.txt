@@ -1,0 +1,19 @@
+TITLE: Window Functions
+SOURCE: https://sqlite.org/windowfunctions.html
+
+Window functions are SQL functions evaluated over a set of rows related to the current row. Unlike ordinary aggregates, they do not collapse the result into one row per group. Instead, they compute per-row analytical results while preserving row-level output.
+
+SQLite documents window functions such as row_number, rank, dense_rank, percent_rank, cume_dist, ntile, lag, lead, first_value, last_value, and nth_value, along with the ability to use aggregate functions as window functions when an OVER clause is present. The OVER clause defines the window, and that window may include PARTITION BY, ORDER BY, and frame boundaries.
+
+This page matters because analytical SQL questions often depend on distinctions between grouping and windowing. For example, a query that needs a running total, ranking within each category, or access to previous and next rows usually belongs to the window functions feature set rather than to plain GROUP BY.
+
+SQLite's documentation also explains frame specifications and the consequences of ordering. Concepts such as ROWS, RANGE, or GROUPS determine which surrounding rows are visible to the calculation. The page further discusses named windows and syntax placement inside SELECT statements.
+
+This page is perfect for the update stage of the homework. Before adding it, a retrieval system may fail or return only aggregate-function material for questions about rank, lag, lead, or running totals. After adding it, the system should retrieve a clearly more relevant source.
+
+Example question themes:
+- How do window functions differ from aggregates?
+- What does row_number do?
+- How can I get the previous row with lag?
+- What does PARTITION BY mean in an OVER clause?
+- Why does a running total preserve one output row per input row?

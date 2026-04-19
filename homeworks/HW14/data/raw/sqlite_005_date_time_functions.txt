@@ -1,0 +1,19 @@
+TITLE: Date And Time Functions
+SOURCE: https://sqlite.org/lang_datefunc.html
+
+SQLite supports seven scalar date and time functions: date, time, datetime, julianday, unixepoch, strftime, and timediff. The first six accept a time-value plus optional modifiers, while timediff accepts exactly two time-values and returns a human-readable difference.
+
+A central SQLite-specific idea is that SQLite does not have a dedicated date/time datatype. Instead, date and time information is commonly represented in one of three forms: ISO-8601 text, Julian day numbers, or Unix timestamps. The date/time functions operate on these representations rather than on a special native datetime type.
+
+The reference explains that the date function returns text in YYYY-MM-DD form, time returns HH:MM:SS style text, and datetime returns combined date and time text. julianday returns a numeric Julian day value, unixepoch returns seconds since the Unix epoch, and strftime formats output according to format directives. timediff describes the amount of time that must be added to one value to reach another.
+
+SQLite documents many accepted input formats, including dates, times, combined timestamps, the literal now, and numeric values that may be interpreted as Julian day numbers or Unix timestamps when the correct modifiers are supplied. Modifiers such as unixepoch, auto, start of month, start of year, start of day, plus or minus intervals, ceiling, floor, and timezone offsets can transform the result step by step.
+
+This page is the correct source for questions like:
+- Does SQLite have a real datetime datatype?
+- What are the supported date and time functions?
+- How should Unix timestamps be interpreted?
+- What is the difference between julianday and unixepoch?
+- When should I use timediff versus subtracting julianday values?
+
+For retrieval, the most valuable fact is that date/time behavior in SQLite is function-driven and representation-driven, not based on a native timestamp column type.

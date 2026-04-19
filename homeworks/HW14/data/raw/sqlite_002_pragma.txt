@@ -1,0 +1,21 @@
+TITLE: PRAGMA Statements
+SOURCE: https://sqlite.org/pragma.html
+
+PRAGMA is a SQLite-specific extension used either to change how the SQLite library behaves or to query internal information that is not stored as ordinary user tables. Pragmas are issued through the same interfaces used for normal SQL, but they behave differently enough that they deserve their own documentation.
+
+Several properties of PRAGMA matter in practice. First, pragmas are not portable SQL. A command that works in SQLite may have no equivalent in another database. Second, the documentation warns that some pragmas can be added or removed over time, so long-term compatibility is weaker than for the core SQL language. Third, an unknown PRAGMA is ignored rather than producing a normal error, which means typos can silently do nothing.
+
+A pragma may take zero or one argument. Arguments can be written in parentheses or after an equal sign, and many boolean settings accept values such as 1/0, yes/no, true/false, and on/off. Some pragmas also allow an optional schema name like main or temp.
+
+A very useful feature is that read-only pragmas with result sets can often be accessed as table-valued functions. For example, metadata that might be queried with a PRAGMA can sometimes be read through SELECT statements against a corresponding pragma_* function. This is helpful because it allows filtering, joins, and aggregation over metadata.
+
+Examples of important pragmas include journal_mode, foreign_keys, table_info, table_list, index_info, integrity_check, page_count, cache_size, synchronous, and user_version. Some pragmas are deprecated, and others are mainly intended for testing rather than application code.
+
+In a retrieval setting, this page is the answer source for questions like:
+- What does PRAGMA do in SQLite?
+- Are pragmas standard SQL?
+- How can I inspect table or index metadata?
+- Why might a typo in a PRAGMA be dangerous?
+- Can PRAGMA information be queried through SELECT?
+
+This document is especially good for configuration, metadata inspection, and operational behavior rather than for general query syntax.

@@ -1,0 +1,19 @@
+TITLE: SQLite FTS5 Extension
+SOURCE: https://sqlite.org/fts5.html
+
+FTS5 is SQLite's full-text search extension. It provides virtual tables and query capabilities optimized for searching text content rather than only matching exact values. In practical terms, FTS5 is the SQLite feature people reach for when they need tokenized text search, relevance-style matching behavior, or specialized indexing of documents.
+
+The FTS5 documentation covers creation of FTS5 virtual tables, query syntax, tokenizers, prefixes, phrase search, boolean combinations, auxiliary functions, and configuration options. It is much more specialized than the ordinary SQL language pages because full-text search has its own indexing model and query semantics.
+
+A key idea is that FTS5 tables are virtual tables. They are not ordinary row-store tables with a normal index attached. Instead, the module manages full-text indexing behavior tailored to document search. The page also explains that tokenization choices affect how text is split and matched, which has a major impact on retrieval quality.
+
+This document is excellent for update-stage examples because many basic SQLite language pages do not answer questions about document search. Before adding FTS5, a retrieval system asked about tokenizers, phrase queries, or MATCH may return irrelevant SQL syntax material. After adding FTS5, it should recover directly relevant context.
+
+Questions this page supports include:
+- What is FTS5 in SQLite?
+- Are FTS5 tables ordinary tables?
+- What does MATCH do in full-text search?
+- How do tokenizers affect search behavior?
+- Why would someone use FTS5 instead of LIKE?
+
+For a mini-RAG homework, this page also creates a nice meta-angle because the student is building retrieval outside SQLite while documenting SQLite's own retrieval feature inside the knowledge base.

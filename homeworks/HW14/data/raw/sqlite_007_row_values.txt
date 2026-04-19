@@ -1,0 +1,19 @@
+TITLE: Row Values
+SOURCE: https://sqlite.org/rowvalue.html
+
+A row value is an ordered list of two or more scalar values. In SQLite, row values can appear in comparisons and in some multi-column operations. They let a query reason about tuples rather than about only one scalar at a time.
+
+The documentation describes comparisons between row values, including equality, inequality, ordering, and NULL-related behavior. A row-value comparison is evaluated from left to right according to SQL comparison rules, and NULLs can make the final truth value unknown depending on whether a definitive true or false result can be established.
+
+Row values are especially useful when comparing multiple columns at once. Instead of writing chained predicates such as a = ? AND b = ?, a query can compare a tuple like (a, b) against another tuple. They can also appear on the right-hand side of an IN operation when the subquery returns the correct number of columns.
+
+The page also discusses row values in UPDATE statements, where multiple columns may be assigned from a row-valued expression or subquery. That can make SQL more compact and more obviously aligned with multi-column logic.
+
+This document is valuable for retrieval because questions about tuple comparison are niche enough that generic knowledge is often fuzzy. A SQLite-grounded answer can address:
+- What is a row value?
+- Can SQLite compare tuples like (a, b) < (x, y)?
+- How do NULLs affect row-value comparisons?
+- Can row values be used in UPDATE assignments?
+- Can a row value be tested with IN against a subquery?
+
+This is a good example of a document that is specialized, self-contained, and easy to miss if the knowledge base is too small. Including it makes retrieval more interesting than a generic SQL tutorial.

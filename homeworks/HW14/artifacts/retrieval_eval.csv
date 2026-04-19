@@ -1,0 +1,11 @@
+query,expected_source,retrieved_sources,hit_at_k,recall_at_k,rank_of_first_relevant
+What is PRAGMA in SQLite and why can unknown pragmas be risky?,sqlite_002_pragma.txt,sqlite_002_pragma.txt,1,1.0,1
+What is the difference between count(*) and count(X)?,sqlite_004_aggregate_functions.txt,sqlite_004_aggregate_functions.txt,1,1.0,1
+Which date and time functions are documented by SQLite?,sqlite_005_date_time_functions.txt,sqlite_005_date_time_functions.txt | sqlite_001_sql_syntax.txt,1,1.0,1
+How does dynamic typing and type affinity work in SQLite?,sqlite_006_datatypes.txt,sqlite_006_datatypes.txt | sqlite_009_strict_tables.txt,1,1.0,1
+Which built-in functions help with lower upper trim and substr?,sqlite_003_core_functions.txt,sqlite_003_core_functions.txt,1,1.0,1
+What are generated columns and VIRTUAL vs STORED modes?,sqlite_008_generated_columns.txt,sqlite_008_generated_columns.txt,1,1.0,1
+Why would someone choose STRICT tables?,sqlite_009_strict_tables.txt,sqlite_009_strict_tables.txt,1,1.0,1
+What placeholder parameter styles are supported in SQLite expressions?,sqlite_010_expressions.txt,sqlite_010_expressions.txt | sqlite_001_sql_syntax.txt,1,1.0,1
+What are row values and tuple comparisons in SQLite?,sqlite_007_row_values.txt,sqlite_007_row_values.txt,1,1.0,1
+How are BOOLEAN-like values represented in SQLite?,sqlite_006_datatypes.txt,sqlite_005_date_time_functions.txt | sqlite_002_pragma.txt | sqlite_006_datatypes.txt,1,1.0,3

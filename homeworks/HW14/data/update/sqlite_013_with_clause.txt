@@ -1,0 +1,17 @@
+TITLE: The WITH Clause
+SOURCE: https://sqlite.org/lang_with.html
+
+The WITH clause introduces common table expressions, often abbreviated as CTEs. A CTE acts like a temporary named result set visible within a single SQL statement. SQLite supports ordinary CTEs and recursive CTEs, making WITH useful for both readability and hierarchical or graph-style queries.
+
+An ordinary CTE can simplify a complex statement by naming intermediate results. This often improves readability because repeated subqueries can be factored into a labeled step. Recursive CTEs go further by allowing a query to repeatedly build on prior rows, which is useful for tree traversal, sequence generation, path expansion, and similar patterns.
+
+SQLite's documentation describes syntax, scope, recursive structure, and materialization-related behavior. The key point for beginners is that WITH does not create a permanent table; it defines temporary query components that exist only for the statement being executed.
+
+This page is valuable in retrieval because questions about recursion, temporary named subqueries, and query structure are common but not always answered clearly by generic SQL summaries. A SQLite-grounded answer can explain:
+- What is a CTE?
+- What is the difference between ordinary and recursive CTEs?
+- Does WITH create a permanent table?
+- When should WITH improve readability?
+- What kinds of tasks need recursive CTEs?
+
+This is an excellent update-stage document because before adding it, a system may answer WITH-related questions using only broad SQL syntax sources. After the update, retrieval should prefer this dedicated CTE page.

@@ -1,0 +1,17 @@
+TITLE: SQL As Understood By SQLite
+SOURCE: https://sqlite.org/lang.html
+
+SQLite supports most of standard SQL, but it is not a clone of every other SQL engine. The language reference is organized around statements, functions, clauses, expressions, and syntax diagrams. For homework purposes, this page is useful as a map of the whole SQL surface area supported by SQLite.
+
+The language reference links to syntax topics such as SELECT, INSERT, UPDATE, DELETE, CREATE TABLE, CREATE INDEX, DROP TABLE, ATTACH DATABASE, transaction control statements, RETURNING, UPSERT, PRAGMA, expressions, aggregate functions, core functions, date and time functions, window functions, and the WITH clause. A practical implication is that SQLite queries can mix familiar SQL with SQLite-specific features.
+
+SQLite accepts a statement list, which is a semicolon-separated sequence of SQL statements. In real usage that means one script can create tables, load data, run queries, and adjust configuration in one pass. The parser also supports syntax diagrams that describe exactly which clauses may appear and in what order.
+
+For a retrieval system, this page is a high-level source that answers broad questions such as:
+- What parts of SQL are documented by SQLite?
+- Does SQLite support window functions or WITH?
+- Where should I look for expressions, functions, or PRAGMA documentation?
+
+This document is intentionally broad rather than deep. It helps route a question to the correct more specific page. For example, questions about built-in scalar functions should be answered from the core functions page, while questions about configuration and metadata are better answered from PRAGMA. Questions about common table expressions belong to the WITH clause page, and advanced analytical queries often depend on the window functions page.
+
+Because SQLite both omits some features and adds its own extensions, a retrieval system should not assume that answers from generic SQL knowledge are automatically correct. The safest answer is often the one grounded in the SQLite-specific language reference and then narrowed to the exact feature page.

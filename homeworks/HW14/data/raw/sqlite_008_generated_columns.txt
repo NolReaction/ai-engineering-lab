@@ -1,0 +1,19 @@
+TITLE: Generated Columns
+SOURCE: https://sqlite.org/gencol.html
+
+Generated columns are columns whose values are derived from other columns in the same row by an expression. Instead of storing an independently supplied value, the database computes the value from a formula defined in the table schema.
+
+SQLite supports generated columns in two main forms: VIRTUAL and STORED. A virtual generated column is computed when read. A stored generated column is computed when the row is written and then persisted on disk. This distinction affects storage cost, read behavior, and update cost.
+
+The generating expression must follow rules documented by SQLite. It is based on columns in the same row and on allowed deterministic expressions. The feature is useful when a schema repeatedly needs derived values such as normalized text, extracted date parts, or simple arithmetic combinations of other columns.
+
+The generated columns page also describes restrictions. Because the column is derived, users do not treat it like an ordinary fully independent input column. There are also rules about what kinds of expressions are permitted and how generated columns interact with indexes and constraints.
+
+For retrieval and mini-RAG, this document can answer:
+- What is a generated column?
+- What is the difference between VIRTUAL and STORED?
+- When is a generated value computed?
+- Can generated columns be indexed?
+- Why might a generated column be better than repeating an expression in every query?
+
+This page is useful because it is modern, concrete, and easy to test in examples. It also pairs well with update-stage documents, since users asking advanced schema questions often also ask about STRICT tables, window functions, or common table expressions.

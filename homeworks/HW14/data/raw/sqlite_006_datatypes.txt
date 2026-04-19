@@ -1,0 +1,19 @@
+TITLE: Datatypes In SQLite
+SOURCE: https://sqlite.org/datatype3.html
+
+SQLite uses a dynamic type system. In many other SQL engines, the declared type of a column rigidly constrains the type of values that may be stored there. SQLite is different: the datatype is associated with the value itself, not strictly with the column container. This is one of the most important conceptual differences between SQLite and more rigid database systems.
+
+The documentation explains that SQLite values are stored using storage classes such as NULL, INTEGER, REAL, TEXT, and BLOB. Columns still have declared types, but those declarations are mapped into affinities rather than hard type enforcement in ordinary tables. Affinity influences conversions and comparison behavior, but it is not the same as strict typing.
+
+Key affinity categories include TEXT, NUMERIC, INTEGER, REAL, and BLOB. A declaration such as VARCHAR, BOOLEAN, or DECIMAL is interpreted through SQLite's affinity rules rather than treated as a fully separate physical type. This explains why SQLite often accepts a wider variety of inserted values than users expect if they come from databases with stricter typing.
+
+The page also discusses comparisons, sorting, conversions, and how literal forms interact with affinity. For example, a value may be converted during insertion or comparison depending on affinity and context. This can affect equality tests, ordering, indexing behavior, and query results.
+
+A retrieval system should use this page for questions such as:
+- Is SQLite statically typed?
+- What storage classes exist?
+- What is type affinity?
+- Why can a column declared as BOOLEAN still store values in flexible ways?
+- How does SQLite differ from rigidly typed databases?
+
+For HW14 this page is excellent because it generates very natural control queries and error-analysis cases. Users often ask about booleans, dates, decimals, or why a declared type does not behave as expected. The answer is usually somewhere in the dynamic typing and affinity model.
