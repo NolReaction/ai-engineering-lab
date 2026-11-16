@@ -1,4 +1,3 @@
-````md
 # S04 – eda_cli: HTTP-сервис качества датасетов (FastAPI)
 
 Расширенная версия проекта `eda-cli` из Семинара 03.
@@ -41,7 +40,7 @@
 
 ```bash
 uv sync
-````
+```
 
 Команда:
 
@@ -286,7 +285,3 @@ uv run uvicorn eda_cli.api:app --reload --host 127.0.0.1 --port 8000
 * проверить `POST /quality`
 * проверить `POST /quality-from-csv` (загрузить `data/example.csv`)
 * проверить `POST /quality-flags-from-csv` (загрузить `data/example.csv`)
-
-```
-::contentReference[oaicite:0]{index=0}
-```
